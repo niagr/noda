@@ -1,0 +1,19 @@
+{
+  "name": "noda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "npm run build && node ./dist/index.js",
+    "dev": "tsc && nodemon ./dist/index.js & tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^8.0.44",
+    "nodemon": "^1.12.1"
+  }
+}

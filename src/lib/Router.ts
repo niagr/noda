@@ -19,8 +19,10 @@ export class Route {
 
 class ResolvedRoute extends Route {
     public readonly callbackOrRouter: RouteCallback
+    public readonly callback: RouteCallback
     constructor(pattern: string, callback: RouteCallback) {
         super(pattern, callback)
+        this.callback = callback
     }
 }
 
@@ -35,8 +37,9 @@ export class Router {
         return routes.reduce<ResolvedRoute[]>((list, route) => 
             list.concat(
                 route.callbackOrRouter instanceof Router ?
-                    Router.resolveRoutes(route.callbackOrRouter.routeList)
-                        .map(r => new ResolvedRoute(route.pattern + r.pattern, r.callbackOrRouter))
+                    Router
+                    .resolveRoutes(route.callbackOrRouter.routeList)
+                    .map(r => new ResolvedRoute(route.pattern + r.pattern, r.callbackOrRouter))
                 :
                     new ResolvedRoute(route.pattern, route.callbackOrRouter)
             )

@@ -11,6 +11,7 @@ exports.Route = Route;
 class ResolvedRoute extends Route {
     constructor(pattern, callback) {
         super(pattern, callback);
+        this.callback = callback;
     }
 }
 class Router {
@@ -20,7 +21,8 @@ class Router {
     }
     static resolveRoutes(routes) {
         return routes.reduce((list, route) => list.concat(route.callbackOrRouter instanceof Router ?
-            Router.resolveRoutes(route.callbackOrRouter.routeList)
+            Router
+                .resolveRoutes(route.callbackOrRouter.routeList)
                 .map(r => new ResolvedRoute(route.pattern + r.pattern, r.callbackOrRouter))
             :
                 new ResolvedRoute(route.pattern, route.callbackOrRouter)), []);

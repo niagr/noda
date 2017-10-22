@@ -17,7 +17,7 @@ class Application {
         http.createServer((req, resp) => __awaiter(this, void 0, void 0, function* () {
             for (const route of this.mainRouter.routeList) {
                 if (req.url == route.pattern) {
-                    const response = yield route.callbackOrRouter(req);
+                    const response = yield route.callback(req);
                     resp.statusCode = 200;
                     resp.end(response.body);
                     return;

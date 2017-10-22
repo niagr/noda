@@ -14,7 +14,7 @@ export default class Application {
         http.createServer(async (req, resp) => {
             for (const route of this.mainRouter.routeList) {
                 if (req.url == route.pattern) {
-                    const response = await route.callbackOrRouter(req)
+                    const response = await route.callback(req)
                     resp.statusCode = 200
                     resp.end(response.body)
                     return

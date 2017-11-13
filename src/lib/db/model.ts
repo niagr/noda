@@ -19,6 +19,7 @@ export interface Model {
     methods: {[methodName: string]: (...args: any[]) => any}
     self?: {[fieldName: string]: Partial<FieldSpecOptions<undefined>>}
     tableName?: string
+    name?: string
 }
 
 type ModelInstanceProps<M extends Model> = {[P in keyof M['fields']]: M['fields'][P]['primitiveType']}

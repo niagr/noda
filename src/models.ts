@@ -2,6 +2,9 @@ import {Model, SQLString, SQLForeignKey, ModelInstance} from './lib/db'
 
 
 export const Animal = {
+
+    name: "Animal",
+
     fields: {
         collarID: new SQLString()
     },

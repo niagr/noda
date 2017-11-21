@@ -14,8 +14,9 @@ export function createMigrations(newModels: ModelWithName[], oldModels: ModelWit
 
     const commonModelsDiff = mapKeys(commonModelsList, (modelName, model) => {
         const diff = modelDiff(model.old!, model.new!)
-        const fieldDiffs = mapKeys(diff.commonFields, fieldName =>
-            fieldDiff(diff.commonFields[fieldName].old, diff.commonFields[fieldName].new))
+        const fieldDiffs = mapKeys(diff.commonFields, fieldName => (
+            fieldDiff(diff.commonFields[fieldName].old, diff.commonFields[fieldName].new)
+        ))
         const changedFields = pickKeys(fieldDiffs, f => (
             fieldDiffs[f].default.from != fieldDiffs[f].default.to ||
             fieldDiffs[f].nullable.from != fieldDiffs[f].nullable.to ||
